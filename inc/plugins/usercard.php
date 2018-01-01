@@ -131,3 +131,20 @@ function usercard_uninstall()
 
     rebuild_settings();
 }
+
+function usercard_index_start()
+{
+    global $templates, $theme, $mybb, $usercard;
+
+    $user = $mybb->user;
+
+    $user["formatted"] = format_name(
+        htmlspecialchars_uni($user['username']),
+        $user['usergroup'],
+        $user['displaygroup']
+    );
+
+    $usercard = $templates->get("usercard_tpl");
+
+    eval('$usercard  = "' . $usercard . '";');
+}
