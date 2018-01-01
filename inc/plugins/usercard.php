@@ -61,6 +61,48 @@ function usercard_install()
         $db->insert_query("settings", $setting);
     }
 
+    $templates = [
+        "usercard_tpl"  => [
+            "template"  => $db->escape_string('
+<table border="0" cellspacing="{$theme[\'borderwidth\']}" cellpadding="{$theme[\'tablespace\']}" class="tborder">
+    <tr>
+		<td class="thead">
+			<b>UserCard</b>
+		</td>
+	</tr>
+	<tr>
+        <td class="trow2">
+			<div class="author_avatar" style="float: left;">
+				<a href="member.php?action=profile&uid={$user[\'uid\']}">
+					<img src="./uploads/avatars/avatar_{$user[\'uid\']}.jpg" alt="" width="75px" height="">
+				</a>
+			</div>
+			<div class="author_information" style="float: right; text-align: right;">
+				<strong>
+					<span class="largetext">{$user[\'formatted\']}</span>
+				</strong>
+				<span class="smalltext">
+					<br /><b>{$user[\'usertitle\']}</b>
+					<br />Discussion: <b>{$user[\'threadnum\']}</b>
+					<br />Message: <b>{$user[\'postnum\']}</b>
+				</span>
+			</div>
+		</td>
+	</tr>
+</table>
+            ')
+        ]
+    ];
+
+    foreach ($templates as $title => $template) {
+        $template["title"]      = $title;
+        $template["dateline"]   = time();
+        $template["sid"]        = "-1";
+        $template["version"]    = "";
+
+        $db->insert_query("templates", $template);
+    }
+
     rebuild_settings();
 }
 
