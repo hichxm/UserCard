@@ -129,6 +129,8 @@ function usercard_uninstall()
     $db->delete_query("settinggroups", "name=\"usercard_sg\"");
     $db->delete_query("settings", "name LIKE \"usercard_%\"");
 
+    $db->delete_query("templates", "title LIKE \"usercard_%\"");
+
     rebuild_settings();
 }
 
