@@ -52,3 +52,14 @@ function usercard_install()
     rebuild_settings();
 }
 
+
+/**
+ * @function Plugin is installed
+ * @return bool
+ */
+function usercard_is_installed()
+{
+    global $mybb;
+    
+    return isset($mybb->settings['usercard_enabled']);
+}
