@@ -1,5 +1,10 @@
 <?php
 
+if (!defined("IN_MYBB"))
+{
+    die("Direct initialization of this file is not allowed.");
+}
+
 /**
  * @function Return plugin information
  * @return array
