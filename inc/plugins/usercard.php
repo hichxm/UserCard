@@ -5,6 +5,13 @@ if (!defined("IN_MYBB"))
     die("Direct initialization of this file is not allowed.");
 }
 
+global $mybb;
+
+if ($mybb->settings["usercard_enabled"] == 1)
+{
+    $plugins->add_hook("index_start", "usercard_index_start");
+}
+
 /**
  * @function Return plugin information
  * @return array
