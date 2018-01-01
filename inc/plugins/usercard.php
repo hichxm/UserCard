@@ -60,6 +60,20 @@ function usercard_install()
 function usercard_is_installed()
 {
     global $mybb;
-    
+
     return isset($mybb->settings['usercard_enabled']);
+}
+
+/**
+ * @function Plugin uninstall
+ * @return mixed
+ */
+function usercard_uninstall()
+{
+    global $db;
+
+    $db->delete_query("settinggroups", "name=\"usercard_sg\"");
+    $db->delete_query("settings", "name LIKE \"usercard_%\"");
+
+    rebuild_settings();
 }
